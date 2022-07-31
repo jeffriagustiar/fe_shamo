@@ -232,7 +232,9 @@ class Sign_up extends StatelessWidget {
                 backgroundColor: primaryColor,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12))),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/home');
+            },
             child: Text(
               'Sign Up',
               style:

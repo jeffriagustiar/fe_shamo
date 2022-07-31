@@ -7,6 +7,7 @@ class Sign_in extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     Widget header() {
       return Container(
         margin: EdgeInsets.only(top: 30),
@@ -137,7 +138,9 @@ class Sign_in extends StatelessWidget {
                 backgroundColor: primaryColor,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12))),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/home');
+            },
             child: Text(
               'Sign In',
               style:
