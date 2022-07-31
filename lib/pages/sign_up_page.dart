@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shamo/theme.dart';
@@ -86,7 +87,7 @@ class Sign_up extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Full Name',
+              'Username',
               style:
                   primaryTextStyle.copyWith(fontWeight: medium, fontSize: 16),
             ),
@@ -104,7 +105,7 @@ class Sign_up extends StatelessWidget {
                   child: Row(
                     children: [
                       Icon(
-                        Icons.person,
+                        Icons.circle_outlined,
                         color: primaryColor,
                       ),
                       SizedBox(
@@ -114,7 +115,54 @@ class Sign_up extends StatelessWidget {
                           child: TextFormField(
                         style: primaryTextStyle,
                         decoration: InputDecoration.collapsed(
-                          hintText: 'Your Full Name',
+                          hintText: 'Your Username',
+                          hintStyle: secondTextStyle,
+                        ),
+                      ))
+                    ],
+                  ),
+                ))
+          ],
+        ),
+      );
+    }
+
+    Widget emailInput() {
+      return Container(
+        margin: EdgeInsets.only(top: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Email Address',
+              style:
+                  primaryTextStyle.copyWith(fontWeight: medium, fontSize: 16),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                width: double.infinity,
+                height: 50,
+                decoration: BoxDecoration(
+                    color: backgroundColor2,
+                    borderRadius: BorderRadius.circular(12)),
+                child: Center(
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.email,
+                        color: primaryColor,
+                      ),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Expanded(
+                          child: TextFormField(
+                        style: primaryTextStyle,
+                        decoration: InputDecoration.collapsed(
+                          hintText: 'Your Email Address',
                           hintStyle: secondTextStyle,
                         ),
                       ))
@@ -162,7 +210,7 @@ class Sign_up extends StatelessWidget {
                         obscureText: true,
                         style: primaryTextStyle,
                         decoration: InputDecoration.collapsed(
-                          hintText: 'Your Email Address',
+                          hintText: 'Your Password',
                           hintStyle: secondTextStyle,
                         ),
                       ))
@@ -186,7 +234,7 @@ class Sign_up extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12))),
             onPressed: () {},
             child: Text(
-              'Sign In',
+              'Sign Up',
               style:
                   primaryTextStyle.copyWith(fontWeight: medium, fontSize: 16),
             )),
@@ -201,17 +249,22 @@ class Sign_up extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Don\'t have an account?',
+              'Already have an account?',
               style: subTextStyle.copyWith(
                 fontWeight: regular,
                 fontSize: 12
               ),
             ),
-            Text(
-              ' Sign Up',
-              style: purpleTextStyle.copyWith(
-                fontSize: 12,
-                fontWeight: medium
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/sign-in');
+              },
+              child: Text(
+                ' Sign In',
+                style: purpleTextStyle.copyWith(
+                  fontSize: 12,
+                  fontWeight: medium
+                ),
               ),
             )
           ],
@@ -233,6 +286,7 @@ class Sign_up extends StatelessWidget {
               header(),
               nameInput(),
               userInput(),
+              emailInput(),
               passwordInput(),
               buttom(),
               Spacer(),
