@@ -70,7 +70,7 @@ class _MainPageState extends State<MainPage> {
                   margin: EdgeInsets.only(
                     top: 20,
                     bottom: 5,
-                    right: 50
+                    // right: 50
                   ),
                   child: Image.asset(
                     'assets/Chat_icon.png',
@@ -86,7 +86,7 @@ class _MainPageState extends State<MainPage> {
                   margin: EdgeInsets.only(
                     top: 20,
                     bottom: 5,
-                    left: 50
+                    // left: 50
                   ),
                   child: Image.asset(
                     'assets/Union_icon.png',
