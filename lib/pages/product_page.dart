@@ -1,13 +1,41 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:shamo/theme.dart';
 
-class ProductPage extends StatelessWidget {
-  const ProductPage({Key? key}) : super(key: key);
+class ProductPage extends StatefulWidget {
+  @override
+  State<ProductPage> createState() => _ProductPageState();
+}
+
+class _ProductPageState extends State<ProductPage> {
+  // const ProductPage({Key? key}) : super(key: key);
+  List images = [
+    'assets/gsepatu1.png',
+    'assets/gsepatu2.png',
+    'assets/gsepatu3.png',
+    ];
+
+  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
 
+    Widget indicator(int index){
+      return Container(
+        width: currentIndex == index ? 16 : 4,
+        height: 4,
+        margin: EdgeInsets.symmetric(horizontal: 2),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: currentIndex == index ? primaryColor : Color(0xffC4C4C4)
+        ),
+      );
+    }
+
     Widget header(){
+
+      int index = -1;
+
       return Column(
         children: [
 
@@ -25,6 +53,35 @@ class ProductPage extends StatelessWidget {
                 Icon(Icons.shopping_bag,color: backgroundColor1,)
               ],
             ),
+          ),
+
+          CarouselSlider(
+            items: images.map(
+              (image) => Image.asset(
+                image,
+                width: MediaQuery.of(context).size.width,
+                height: 310,
+                fit: BoxFit.cover,
+              )
+            ).toList(), 
+            options: CarouselOptions(
+              initialPage: 0,
+              onPageChanged: (index, reason){
+                setState(() {
+                  currentIndex = index;
+                });
+              }
+            )
+          ),
+
+          SizedBox(height: 20,),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: images.map((e) {
+              index++;
+              return indicator(index);
+            } ).toList(),
           )
 
         ],
