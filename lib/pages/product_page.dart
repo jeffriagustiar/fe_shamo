@@ -14,6 +14,18 @@ class _ProductPageState extends State<ProductPage> {
     'assets/gsepatu2.png',
     'assets/gsepatu3.png',
     ];
+  
+  List familiarShoes = [
+    'assets/gsepatu1.png',
+    'assets/gsepatu2.png',
+    'assets/gsepatu3.png',
+    'assets/gsepatu1.png',
+    'assets/gsepatu2.png',
+    'assets/gsepatu3.png',
+    'assets/gsepatu1.png',
+    'assets/gsepatu2.png',
+    'assets/gsepatu3.png',
+  ];
 
   int currentIndex = 0;
 
@@ -28,6 +40,20 @@ class _ProductPageState extends State<ProductPage> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: currentIndex == index ? primaryColor : Color(0xffC4C4C4)
+        ),
+      );
+    }
+
+    Widget familiarShoesCard(String imageUrl){
+      return Container(
+        width: 54,
+        height: 54,
+        margin: EdgeInsets.only(right: 16),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(imageUrl)
+          ),
+          borderRadius: BorderRadius.circular(6)
         ),
       );
     }
@@ -89,6 +115,9 @@ class _ProductPageState extends State<ProductPage> {
     }
 
     Widget content(){
+
+      int index = -1;
+
       return Container(
         margin: EdgeInsets.only(top: 17),
         width: double.infinity,
@@ -161,7 +190,7 @@ class _ProductPageState extends State<ProductPage> {
               ),
             ),
 
-            //? Note. Description
+            //? Note. Description Content
             Container(
               width: double.infinity,
               margin: EdgeInsets.only(top: defaultMargin, right: defaultMargin,left: defaultMargin),
@@ -185,6 +214,45 @@ class _ProductPageState extends State<ProductPage> {
                 ],
               ),
             ),
+
+            //? Note. Familiar Content
+            Container(
+              width: double.infinity,
+              margin: EdgeInsets.only(top: defaultMargin),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+                    child: Text(
+                      'Familiar Shoes',
+                      style: primaryTextStyle.copyWith(
+                        fontWeight: medium
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 12,),
+
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: familiarShoes
+                      .map((image) {
+                        index ++;
+                        return Container(
+                          margin: EdgeInsets.only(
+                            left: index == 0 ? defaultMargin : 0
+                          ),
+                          child: familiarShoesCard(image)
+                        );
+                      }).toList(),
+                    ),
+                  )
+                  //
+                ],
+              ),
+            ),
+
           ],
         ),
       );
