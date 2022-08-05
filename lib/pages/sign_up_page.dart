@@ -8,9 +8,10 @@ class Sign_up extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     Widget header() {
       return Container(
-        margin: EdgeInsets.only(top: 30),
+        margin: const EdgeInsets.only(top: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -21,7 +22,7 @@ class Sign_up extends StatelessWidget {
                 fontSize: 24,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 2,
             ),
             Text(
@@ -35,7 +36,7 @@ class Sign_up extends StatelessWidget {
 
     Widget nameInput() {
       return Container(
-        margin: EdgeInsets.only(top: 50),
+        margin: const EdgeInsets.only(top: 50),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -44,11 +45,11 @@ class Sign_up extends StatelessWidget {
               style:
                   primaryTextStyle.copyWith(fontWeight: medium, fontSize: 16),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
-                padding: EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 width: double.infinity,
                 height: 50,
                 decoration: BoxDecoration(
@@ -61,7 +62,7 @@ class Sign_up extends StatelessWidget {
                         Icons.person,
                         color: primaryColor,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 15,
                       ),
                       Expanded(
@@ -82,7 +83,7 @@ class Sign_up extends StatelessWidget {
 
     Widget userInput() {
       return Container(
-        margin: EdgeInsets.only(top: 20),
+        margin: const EdgeInsets.only(top: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -91,11 +92,11 @@ class Sign_up extends StatelessWidget {
               style:
                   primaryTextStyle.copyWith(fontWeight: medium, fontSize: 16),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
-                padding: EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 width: double.infinity,
                 height: 50,
                 decoration: BoxDecoration(
@@ -108,7 +109,7 @@ class Sign_up extends StatelessWidget {
                         Icons.circle_outlined,
                         color: primaryColor,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 15,
                       ),
                       Expanded(
@@ -129,7 +130,7 @@ class Sign_up extends StatelessWidget {
 
     Widget emailInput() {
       return Container(
-        margin: EdgeInsets.only(top: 20),
+        margin: const EdgeInsets.only(top: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -138,11 +139,11 @@ class Sign_up extends StatelessWidget {
               style:
                   primaryTextStyle.copyWith(fontWeight: medium, fontSize: 16),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
-                padding: EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 width: double.infinity,
                 height: 50,
                 decoration: BoxDecoration(
@@ -155,7 +156,7 @@ class Sign_up extends StatelessWidget {
                         Icons.email,
                         color: primaryColor,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 15,
                       ),
                       Expanded(
@@ -176,7 +177,7 @@ class Sign_up extends StatelessWidget {
 
     Widget passwordInput() {
       return Container(
-        margin: EdgeInsets.only(top: 20),
+        margin: const EdgeInsets.only(top: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -185,11 +186,11 @@ class Sign_up extends StatelessWidget {
               style:
                   primaryTextStyle.copyWith(fontWeight: medium, fontSize: 16),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
-                padding: EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 width: double.infinity,
                 height: 50,
                 decoration: BoxDecoration(
@@ -202,7 +203,7 @@ class Sign_up extends StatelessWidget {
                         Icons.key,
                         color: primaryColor,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 15,
                       ),
                       Expanded(
@@ -226,7 +227,7 @@ class Sign_up extends StatelessWidget {
       return Container(
         height: 50,
         width: double.infinity,
-        margin: EdgeInsets.only(top: 30),
+        margin: const EdgeInsets.only(top: 30),
         child: TextButton(
             style: TextButton.styleFrom(
                 backgroundColor: primaryColor,
@@ -245,7 +246,7 @@ class Sign_up extends StatelessWidget {
 
     Widget footer() {
       return Container(
-        margin: EdgeInsets.only(bottom: 30),
+        margin: const EdgeInsets.only(bottom: 30),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -275,10 +276,11 @@ class Sign_up extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: Color(0xff1F1D2B),
+      backgroundColor: const Color(0xff1F1D2B),
       resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: Container(
+        child: SingleChildScrollView(
+          child: Container(
           margin: EdgeInsets.symmetric(
             horizontal: defaultMargin,
           ),
@@ -291,12 +293,17 @@ class Sign_up extends StatelessWidget {
               emailInput(),
               passwordInput(),
               buttom(),
-              Spacer(),
-              footer()
+              SizedBox(height: 20,),
+              footer(),
+              SizedBox(height: 20,),
             ],
           ),
         ),
+        ),
       ),
     );
+
+    
+
   }
 }
