@@ -7,23 +7,26 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    Widget emptyCart(){
+    Widget emptyCart() {
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/Cart_iconn.png',width: 80,),
-
-            SizedBox(height: 20,),
+            Image.asset(
+              'assets/Cart_iconn.png',
+              width: 80,
+            ),
+            SizedBox(
+              height: 20,
+            ),
             Text(
               'Opss! Your Cart is Empty',
-              style: primaryTextStyle.copyWith(
-                fontSize: 16,
-                fontWeight: medium
-              ),
+              style:
+                  primaryTextStyle.copyWith(fontSize: 16, fontWeight: medium),
             ),
-            SizedBox(height: 12,),
+            SizedBox(
+              height: 12,
+            ),
             Text(
               'Let\'s find your favorite shoes',
               style: secondTextStyle,
@@ -33,31 +36,25 @@ class CartPage extends StatelessWidget {
               height: 44,
               margin: EdgeInsets.only(top: 20),
               child: TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                }, 
-                style: TextButton.styleFrom(
-                  backgroundColor: primaryColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12)
-                  )
-                ),
-                child: Text(
-                  'Explore Store',
-                  style: primaryTextStyle.copyWith(
-                    fontSize: 16,
-                    fontWeight: medium
-                  ),
-                )
-              ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  style: TextButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12))),
+                  child: Text(
+                    'Explore Store',
+                    style: primaryTextStyle.copyWith(
+                        fontSize: 16, fontWeight: medium),
+                  )),
             )
-
           ],
         ),
       );
     }
 
-    Widget content(){
+    Widget content() {
       return ListView(
         padding: EdgeInsets.symmetric(horizontal: defaultMargin),
         children: [
@@ -68,13 +65,12 @@ class CartPage extends StatelessWidget {
       );
     }
 
-    Widget customBottomNav(){
+    Widget customBottomNav() {
       return Container(
         // width: ,
         height: 180,
         child: Column(
           children: [
-
             Container(
               margin: EdgeInsets.symmetric(horizontal: defaultMargin),
               child: Row(
@@ -87,48 +83,48 @@ class CartPage extends StatelessWidget {
                   Text(
                     '\$287,96',
                     style: priceTextStyle.copyWith(
-                      fontSize: 16,
-                      fontWeight: semibold
-                    ),
+                        fontSize: 16, fontWeight: semibold),
                   )
                 ],
               ),
             ),
-
-            SizedBox(height: 30,),
+            SizedBox(
+              height: 30,
+            ),
             Divider(
               thickness: 0.5,
               color: subtitleColor,
             ),
-            SizedBox(height: 30,),
+            SizedBox(
+              height: 30,
+            ),
             Container(
               height: 50,
               padding: EdgeInsets.symmetric(horizontal: defaultMargin),
               child: TextButton(
-                onPressed: () {}, 
-                style: TextButton.styleFrom(
-                  backgroundColor: primaryColor,
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12)
-                  )
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Continue to Checkout',
-                      style: primaryTextStyle.copyWith(
-                        fontSize: 16,
-                        fontWeight: semibold
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/checkout');
+                  },
+                  style: TextButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Continue to Checkout',
+                        style: primaryTextStyle.copyWith(
+                            fontSize: 16, fontWeight: semibold),
                       ),
-                    ),
-                    Icon(Icons.arrow_forward, color: primaryTextColor,)
-                  ],
-                )
-              ),
+                      Icon(
+                        Icons.arrow_forward,
+                        color: primaryTextColor,
+                      )
+                    ],
+                  )),
             )
-
           ],
         ),
       );
@@ -142,7 +138,6 @@ class CartPage extends StatelessWidget {
         title: Text('Your Cart'),
         elevation: 0,
       ),
-
       body: content(),
       bottomNavigationBar: customBottomNav(),
     );
