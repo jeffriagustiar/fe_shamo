@@ -1,13 +1,32 @@
+import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:shamo/providers/auth_provider.dart';
 import 'package:shamo/theme.dart';
 
 class Sign_up extends StatelessWidget {
-  const Sign_up({Key? key}) : super(key: key);
+  // const Sign_up({Key? key}) : super(key: key);
+
+  TextEditingController nameController = TextEditingController(text: '');
+  TextEditingController usernameController = TextEditingController(text: '');
+  TextEditingController emailController = TextEditingController(text: '');
+  TextEditingController passwordController = TextEditingController(text: '');
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    handleSignUp() async {
+      if (await authProvider.register(
+          name: nameController.text,
+          username: usernameController.text,
+          email: emailController.text,
+          password: passwordController.text)) {
+        Navigator.pushNamed(context, '/home');
+      }
+    }
 
     Widget header() {
       return Container(
@@ -68,6 +87,7 @@ class Sign_up extends StatelessWidget {
                       Expanded(
                           child: TextFormField(
                         style: primaryTextStyle,
+                        controller: nameController,
                         decoration: InputDecoration.collapsed(
                           hintText: 'Your Full Name',
                           hintStyle: secondTextStyle,
@@ -115,6 +135,7 @@ class Sign_up extends StatelessWidget {
                       Expanded(
                           child: TextFormField(
                         style: primaryTextStyle,
+                        controller: usernameController,
                         decoration: InputDecoration.collapsed(
                           hintText: 'Your Username',
                           hintStyle: secondTextStyle,
@@ -162,6 +183,7 @@ class Sign_up extends StatelessWidget {
                       Expanded(
                           child: TextFormField(
                         style: primaryTextStyle,
+                        controller: emailController,
                         decoration: InputDecoration.collapsed(
                           hintText: 'Your Email Address',
                           hintStyle: secondTextStyle,
@@ -210,6 +232,7 @@ class Sign_up extends StatelessWidget {
                           child: TextFormField(
                         obscureText: true,
                         style: primaryTextStyle,
+                        controller: passwordController,
                         decoration: InputDecoration.collapsed(
                           hintText: 'Your Password',
                           hintStyle: secondTextStyle,
@@ -233,9 +256,7 @@ class Sign_up extends StatelessWidget {
                 backgroundColor: primaryColor,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12))),
-            onPressed: () {
-              Navigator.pushNamed(context, '/home');
-            },
+            onPressed: handleSignUp,
             child: Text(
               'Sign Up',
               style:
@@ -253,10 +274,7 @@ class Sign_up extends StatelessWidget {
           children: [
             Text(
               'Already have an account?',
-              style: subTextStyle.copyWith(
-                fontWeight: regular,
-                fontSize: 12
-              ),
+              style: subTextStyle.copyWith(fontWeight: regular, fontSize: 12),
             ),
             GestureDetector(
               onTap: () {
@@ -264,10 +282,8 @@ class Sign_up extends StatelessWidget {
               },
               child: Text(
                 ' Sign In',
-                style: purpleTextStyle.copyWith(
-                  fontSize: 12,
-                  fontWeight: medium
-                ),
+                style:
+                    purpleTextStyle.copyWith(fontSize: 12, fontWeight: medium),
               ),
             )
           ],
@@ -281,29 +297,30 @@ class Sign_up extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-          margin: EdgeInsets.symmetric(
-            horizontal: defaultMargin,
+            margin: EdgeInsets.symmetric(
+              horizontal: defaultMargin,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                header(),
+                nameInput(),
+                userInput(),
+                emailInput(),
+                passwordInput(),
+                buttom(),
+                SizedBox(
+                  height: 20,
+                ),
+                footer(),
+                SizedBox(
+                  height: 20,
+                ),
+              ],
+            ),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              header(),
-              nameInput(),
-              userInput(),
-              emailInput(),
-              passwordInput(),
-              buttom(),
-              SizedBox(height: 20,),
-              footer(),
-              SizedBox(height: 20,),
-            ],
-          ),
-        ),
         ),
       ),
     );
-
-    
-
   }
 }

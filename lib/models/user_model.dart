@@ -2,12 +2,12 @@ import 'dart:collection';
 
 class UserModel {
   //? variable
-  late int id;
-  late String name;
-  late String email;
-  late String username;
-  late String profilePhotoUrl;
-  late String token;
+  int? id;
+  String? name;
+  String? email;
+  String? username;
+  // late String profilePhotoUrl;
+  String? token;
 
   //? contruktor
   UserModel({
@@ -15,7 +15,7 @@ class UserModel {
     required this.name,
     required this.email,
     required this.username,
-    required this.profilePhotoUrl,
+    // required this.profilePhotoUrl,
     required this.token,
   });
 
@@ -25,7 +25,7 @@ class UserModel {
     name = json['name'];
     email = json['email'];
     username = json['username'];
-    profilePhotoUrl = json['profile_photo_url'];
+    // profilePhotoUrl = json['profile_photo_url'];
     token = json['token'];
   }
 
@@ -36,7 +36,7 @@ class UserModel {
       'name': name,
       'email': email,
       'username': username,
-      'profile_photo_url': profilePhotoUrl,
+      // 'profile_photo_url': profilePhotoUrl,
       'token': token,
     };
   }
