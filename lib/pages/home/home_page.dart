@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shamo/models/user_model.dart';
+import 'package:shamo/providers/auth_provider.dart';
 import 'package:shamo/theme.dart';
 import 'package:shamo/widgets/product_card.dart';
 import 'package:shamo/widgets/product_tile.dart';
@@ -8,56 +11,49 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
-    Widget header(){
+    UserModel user = authProvider.user;
+
+    Widget header() {
       return Container(
         margin: EdgeInsets.only(
-          top: defaultMargin,
-          left: defaultMargin,
-          right: defaultMargin
-        ),
-
+            top: defaultMargin, left: defaultMargin, right: defaultMargin),
         child: Row(
           children: [
-
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Hello, Alex',
+                    'Hello, ${user.name}',
                     style: primaryTextStyle.copyWith(
-                      fontSize: 24,
-                      fontWeight: semibold
-                    ),
+                        fontSize: 24, fontWeight: semibold),
                   ),
                   Text(
-                    '@alexkeinn',style: subTextStyle.copyWith(
+                    '@${user.username}',
+                    style: subTextStyle.copyWith(
                       fontSize: 16,
                     ),
                   )
                 ],
               ),
             ),
-
             Spacer(),
-
             Container(
               width: 54,
               height: 54,
               decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(image: AssetImage('assets/profile_image.png'))
-              ),
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                      image: AssetImage('assets/profile_image.png'))),
             )
-
           ],
         ),
-
       );
     }
 
-    Widget categories(){
+    Widget categories() {
       return Container(
         margin: EdgeInsets.only(
           top: defaultMargin,
@@ -66,139 +62,91 @@ class HomePage extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              SizedBox(width: defaultMargin,),
-        
+              SizedBox(
+                width: defaultMargin,
+              ),
               Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 10
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                 margin: EdgeInsets.only(right: 16),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: primaryColor
-                ),
+                    borderRadius: BorderRadius.circular(12),
+                    color: primaryColor),
                 child: Text(
                   'All Shoes',
                   style: primaryTextStyle.copyWith(
-                    fontSize: 12,
-                    fontWeight: medium
-                  ),
+                      fontSize: 12, fontWeight: medium),
                 ),
               ),
-        
               Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 10
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                 margin: EdgeInsets.only(right: 16),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: transparantColor,
-                  border: Border.all(
-                    color: subtitleColor
-                  )
-                ),
+                    borderRadius: BorderRadius.circular(12),
+                    color: transparantColor,
+                    border: Border.all(color: subtitleColor)),
                 child: Text(
                   'Running',
-                  style: subTextStyle.copyWith(
-                    fontSize: 12,
-                    fontWeight: medium
-                  ),
+                  style:
+                      subTextStyle.copyWith(fontSize: 12, fontWeight: medium),
                 ),
               ),
-        
               Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 10
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                 margin: EdgeInsets.only(right: 16),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: transparantColor,
-                  border: Border.all(
-                    color: subtitleColor
-                  )
-                ),
+                    borderRadius: BorderRadius.circular(12),
+                    color: transparantColor,
+                    border: Border.all(color: subtitleColor)),
                 child: Text(
                   'Training',
-                  style: subTextStyle.copyWith(
-                    fontSize: 12,
-                    fontWeight: medium
-                  ),
+                  style:
+                      subTextStyle.copyWith(fontSize: 12, fontWeight: medium),
                 ),
               ),
-        
               Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 10
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                 margin: EdgeInsets.only(right: 16),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: transparantColor,
-                  border: Border.all(
-                    color: subtitleColor
-                  )
-                ),
+                    borderRadius: BorderRadius.circular(12),
+                    color: transparantColor,
+                    border: Border.all(color: subtitleColor)),
                 child: Text(
                   'Basketball',
-                  style: subTextStyle.copyWith(
-                    fontSize: 12,
-                    fontWeight: medium
-                  ),
+                  style:
+                      subTextStyle.copyWith(fontSize: 12, fontWeight: medium),
                 ),
               ),
-        
               Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 10
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                 margin: EdgeInsets.only(right: 16),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: transparantColor,
-                  border: Border.all(
-                    color: subtitleColor
-                  )
-                ),
+                    borderRadius: BorderRadius.circular(12),
+                    color: transparantColor,
+                    border: Border.all(color: subtitleColor)),
                 child: Text(
                   'Hiking',
-                  style: subTextStyle.copyWith(
-                    fontSize: 12,
-                    fontWeight: medium
-                  ),
+                  style:
+                      subTextStyle.copyWith(fontSize: 12, fontWeight: medium),
                 ),
               ),
-        
             ],
           ),
         ),
       );
     }
 
-    Widget popularProductTitle(){
+    Widget popularProductTitle() {
       return Container(
         margin: EdgeInsets.only(
-          top: defaultMargin,
-          right: defaultMargin,
-          left: defaultMargin
-        ),
+            top: defaultMargin, right: defaultMargin, left: defaultMargin),
         child: Text(
           'Popular Products',
-          style: primaryTextStyle.copyWith(
-            fontSize: 22,
-            fontWeight: semibold
-          ),
+          style: primaryTextStyle.copyWith(fontSize: 22, fontWeight: semibold),
         ),
       );
     }
 
-    Widget popularProducts(){
+    Widget popularProducts() {
       return Container(
         margin: EdgeInsets.only(
           top: 14,
@@ -207,9 +155,9 @@ class HomePage extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-
-              SizedBox(width: defaultMargin,),
-
+              SizedBox(
+                width: defaultMargin,
+              ),
               Row(
                 children: [
                   ProductCard(),
@@ -222,25 +170,19 @@ class HomePage extends StatelessWidget {
         ),
       );
     }
-    
-    Widget newArrivalsTitle(){
+
+    Widget newArrivalsTitle() {
       return Container(
         margin: EdgeInsets.only(
-          top: defaultMargin,
-          right: defaultMargin,
-          left: defaultMargin
-        ),
+            top: defaultMargin, right: defaultMargin, left: defaultMargin),
         child: Text(
           'New Arrivals',
-          style: primaryTextStyle.copyWith(
-            fontSize: 22,
-            fontWeight: semibold
-          ),
+          style: primaryTextStyle.copyWith(fontSize: 22, fontWeight: semibold),
         ),
       );
     }
 
-    Widget newArrivals(){
+    Widget newArrivals() {
       return Container(
         margin: EdgeInsets.only(
           top: 14,

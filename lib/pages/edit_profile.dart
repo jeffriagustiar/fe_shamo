@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shamo/models/user_model.dart';
+import 'package:shamo/providers/auth_provider.dart';
 import 'package:shamo/theme.dart';
 
 class EditProfilePage extends StatelessWidget {
@@ -6,8 +9,11 @@ class EditProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
-    Widget nameInput(){
+    UserModel user = authProvider.user;
+
+    Widget nameInput() {
       return Container(
         margin: EdgeInsets.only(top: 30),
         child: Column(
@@ -15,26 +21,22 @@ class EditProfilePage extends StatelessWidget {
           children: [
             Text(
               'Name',
-              style: secondTextStyle.copyWith(
-                fontSize: 13
-              ),
+              style: secondTextStyle.copyWith(fontSize: 13),
             ),
             TextFormField(
               style: priceTextStyle,
               decoration: InputDecoration(
-                hintText: 'Alex keinnzal',
-                hintStyle: primaryTextStyle,
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: subtitleColor)
-                )
-              ),
+                  hintText: user.name,
+                  hintStyle: primaryTextStyle,
+                  enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: subtitleColor))),
             )
           ],
         ),
       );
     }
 
-    Widget usernameInput(){
+    Widget usernameInput() {
       return Container(
         margin: EdgeInsets.only(top: 30),
         child: Column(
@@ -42,26 +44,22 @@ class EditProfilePage extends StatelessWidget {
           children: [
             Text(
               'Username',
-              style: secondTextStyle.copyWith(
-                fontSize: 13
-              ),
+              style: secondTextStyle.copyWith(fontSize: 13),
             ),
             TextFormField(
               style: priceTextStyle,
               decoration: InputDecoration(
-                hintText: '@alexkeinn',
-                hintStyle: primaryTextStyle,
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: subtitleColor)
-                )
-              ),
+                  hintText: '@${user.username}',
+                  hintStyle: primaryTextStyle,
+                  enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: subtitleColor))),
             )
           ],
         ),
       );
     }
 
-    Widget emailInput(){
+    Widget emailInput() {
       return Container(
         margin: EdgeInsets.only(top: 30),
         child: Column(
@@ -69,26 +67,22 @@ class EditProfilePage extends StatelessWidget {
           children: [
             Text(
               'Email Address',
-              style: secondTextStyle.copyWith(
-                fontSize: 13
-              ),
+              style: secondTextStyle.copyWith(fontSize: 13),
             ),
             TextFormField(
               style: priceTextStyle,
               decoration: InputDecoration(
-                hintText: 'a@gmail.com',
-                hintStyle: primaryTextStyle,
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: subtitleColor)
-                )
-              ),
+                  hintText: user.email,
+                  hintStyle: primaryTextStyle,
+                  enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: subtitleColor))),
             )
           ],
         ),
       );
     }
 
-    Widget content(){
+    Widget content() {
       return Container(
         width: double.infinity,
         padding: EdgeInsets.symmetric(horizontal: defaultMargin),
@@ -100,11 +94,10 @@ class EditProfilePage extends StatelessWidget {
               height: 100,
               margin: EdgeInsets.only(top: defaultMargin),
               decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: AssetImage('assets/profile_image.png')
-                )
-              ),
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                      fit: BoxFit.fill,
+                      image: AssetImage('assets/profile_image.png'))),
             ),
             nameInput(),
             usernameInput(),
@@ -121,21 +114,20 @@ class EditProfilePage extends StatelessWidget {
         backgroundColor: backgroundColor1,
         elevation: 0,
         centerTitle: true,
-        title: Text( 
-          'Edit Profile'
-        ),
+        title: Text('Edit Profile'),
         actions: [
           IconButton(
-            onPressed: () {}, 
-            icon: Icon(Icons.check, color: primaryColor,)
-          )
+              onPressed: () {},
+              icon: Icon(
+                Icons.check,
+                color: primaryColor,
+              ))
         ],
         leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          }, 
-          icon: Icon(Icons.close)
-        ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.close)),
       ),
       body: content(),
     );
