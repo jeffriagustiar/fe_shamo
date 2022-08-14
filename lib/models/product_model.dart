@@ -5,7 +5,7 @@ class ProductModel {
   int? id;
   late String name;
   double? price;
-  String? description;
+  late String description;
   String? tags;
   late CategoryModel category;
   DateTime? createdAt;
