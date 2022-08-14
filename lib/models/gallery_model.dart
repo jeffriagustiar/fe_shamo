@@ -1,6 +1,6 @@
 class GalleryModel {
-  int? id;
-  String? url;
+  late int id;
+  late String url;
 
   GalleryModel({
     required this.id,

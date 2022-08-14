@@ -3,17 +3,18 @@ import 'package:shamo/models/gallery_model.dart';
 
 class ProductModel {
   int? id;
-  String? name;
+  late String name;
   double? price;
   String? description;
   String? tags;
-  CategoryModel? category;
+  late CategoryModel category;
   DateTime? createdAt;
   DateTime? updatedAt;
-  List<GalleryModel>? galleries;
+  late List<GalleryModel> galleries;
 
   ProductModel({
     required this.id,
+    required this.name,
     required this.price,
     required this.description,
     required this.tags,
@@ -25,6 +26,7 @@ class ProductModel {
 
   ProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    name = json['name'];
     price = double.parse(json['price'].toString());
     description = json['description'];
     tags = json['tags'];
@@ -43,8 +45,8 @@ class ProductModel {
       'price': price,
       'description': description,
       'tags': tags,
-      'category': category?.toJson(),
-      'galleries': galleries?.map((gallery) => gallery.toJson()).toList(),
+      'category': category.toJson(),
+      'galleries': galleries.map((gallery) => gallery.toJson()).toList(),
       'created_at': createdAt.toString(),
       'updated_at': updatedAt.toString(),
     };
