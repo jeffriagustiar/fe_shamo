@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shamo/models/product_model.dart';
+import 'package:shamo/providers/wishlist_provider.dart';
 import 'package:shamo/theme.dart';
 
 class ProductPage extends StatefulWidget {
@@ -36,6 +38,8 @@ class _ProductPageState extends State<ProductPage> {
 
   @override
   Widget build(BuildContext context) {
+    WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
+
     Widget indicator(int index) {
       return Container(
         width: currentIndex == index ? 16 : 4,
@@ -146,9 +150,32 @@ class _ProductPageState extends State<ProductPage> {
                       ],
                     ),
                   ),
-                  Image.asset(
-                    'assets/Love_Button_blck.png',
-                    width: 46,
+                  GestureDetector(
+                    onTap: () {
+                      wishlistProvider.setProduct(widget.product);
+
+                      if (wishlistProvider.isWishlist(widget.product)) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            backgroundColor: secondColor,
+                            content: Text(
+                              'Has been Added to the Wishlist',
+                              textAlign: TextAlign.center,
+                            )));
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            backgroundColor: alertColor,
+                            content: Text(
+                              'Has been removed from the Wishlist',
+                              textAlign: TextAlign.center,
+                            )));
+                      }
+                    },
+                    child: Image.asset(
+                      wishlistProvider.isWishlist(widget.product)
+                          ? 'assets/button_wishlist_blue.png'
+                          : 'assets/Love_Button_blck.png',
+                      width: 46,
+                    ),
                   )
                 ],
               ),
