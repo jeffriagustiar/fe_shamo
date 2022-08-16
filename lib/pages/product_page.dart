@@ -159,18 +159,22 @@ class _ProductPageState extends State<ProductPage> {
 
                       if (wishlistProvider.isWishlist(widget.product)) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            backgroundColor: secondColor,
-                            content: Text(
-                              'Has been Added to the Wishlist',
-                              textAlign: TextAlign.center,
-                            )));
+                          backgroundColor: secondColor,
+                          content: Text(
+                            'Has been Added to the Wishlist',
+                            textAlign: TextAlign.center,
+                          ),
+                          duration: Duration(milliseconds: 300),
+                        ));
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            backgroundColor: alertColor,
-                            content: Text(
-                              'Has been removed from the Wishlist',
-                              textAlign: TextAlign.center,
-                            )));
+                          backgroundColor: alertColor,
+                          content: Text(
+                            'Has been removed from the Wishlist',
+                            textAlign: TextAlign.center,
+                          ),
+                          duration: Duration(milliseconds: 300),
+                        ));
                       }
                     },
                     child: Image.asset(
@@ -296,11 +300,13 @@ class _ProductPageState extends State<ProductPage> {
                             cartProvider.addCart(widget.product);
 
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                backgroundColor: secondColor,
-                                content: Text(
-                                  'Has been Added to the Cart',
-                                  textAlign: TextAlign.center,
-                                )));
+                              backgroundColor: secondColor,
+                              content: Text(
+                                'Has been Added to the Cart',
+                                textAlign: TextAlign.center,
+                              ),
+                              duration: Duration(milliseconds: 300),
+                            ));
                           },
                           style: TextButton.styleFrom(
                               shape: RoundedRectangleBorder(
